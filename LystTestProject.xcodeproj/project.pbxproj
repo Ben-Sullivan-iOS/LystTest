@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E8863BD22D0977200822492 /* LystAPIService in Frameworks */ = {isa = PBXBuildFile; productRef = 2E8863BC22D0977200822492 /* LystAPIService */; };
 		480865EC22CCEB7500354FE7 /* LystAPIService in Frameworks */ = {isa = PBXBuildFile; productRef = 480865EB22CCEB7500354FE7 /* LystAPIService */; };
 		480865EE22CF517C00354FE7 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480865ED22CF517B00354FE7 /* ProductCell.xib */; };
 		480865F022CF738700354FE7 /* RoundedBorderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480865EF22CF738700354FE7 /* RoundedBorderButtonView.xib */; };
@@ -34,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		480865E922CCEAF700354FE7 /* LystAPIService */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LystAPIService; sourceTree = "<group>"; };
 		480865ED22CF517B00354FE7 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		480865EF22CF738700354FE7 /* RoundedBorderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoundedBorderButtonView.xib; sourceTree = "<group>"; };
 		48DE76A022CF791900FB2B33 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
@@ -60,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				480865EC22CCEB7500354FE7 /* LystAPIService in Frameworks */,
+				2E8863BD22D0977200822492 /* LystAPIService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +126,6 @@
 		48EC362822CCA56800600475 /* LystTestProject */ = {
 			isa = PBXGroup;
 			children = (
-				480865E922CCEAF700354FE7 /* LystAPIService */,
 				48EC362922CCA56800600475 /* AppDelegate.swift */,
 				48DE76AA22CF9B8E00FB2B33 /* Helpers */,
 				48DE76AB22CF9BA400FB2B33 /* FeedModule */,
@@ -163,6 +163,7 @@
 			name = LystTestProject;
 			packageProductDependencies = (
 				480865EB22CCEB7500354FE7 /* LystAPIService */,
+				2E8863BC22D0977200822492 /* LystAPIService */,
 			);
 			productName = LystTestProject;
 			productReference = 48EC362622CCA56800600475 /* LystTestProject.app */;
@@ -214,6 +215,9 @@
 				Base,
 			);
 			mainGroup = 48EC361D22CCA56800600475;
+			packageReferences = (
+				2E8863BB22D0977200822492 /* XCRemoteSwiftPackageReference "LystAPISwiftPM" */,
+			);
 			productRefGroup = 48EC362722CCA56800600475 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -519,7 +523,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2E8863BB22D0977200822492 /* XCRemoteSwiftPackageReference "LystAPISwiftPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MasteringTableViews/LystAPISwiftPM.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		2E8863BC22D0977200822492 /* LystAPIService */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E8863BB22D0977200822492 /* XCRemoteSwiftPackageReference "LystAPISwiftPM" */;
+			productName = LystAPIService;
+		};
 		480865EB22CCEB7500354FE7 /* LystAPIService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LystAPIService;
