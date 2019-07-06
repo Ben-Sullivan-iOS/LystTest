@@ -7,8 +7,10 @@ The APIService for this project has been created using the new Swift Package Man
 The architecture is based on MVP which has the following layers:
 
 Model - There are two main types of objects
-Representables which are created by a Presenter and consumed by a View
-NetworkModels which represent data received from the Network
+
+1. Representables which are created by a Presenter and consumed by a View
+
+2.NetworkModels which represent data received from the Network
 
 View - The combination of the View and the View Controller. The view knows how to consume a representable and how it should appear on screen. It does not know anything about the Model or Presenter layers
 
