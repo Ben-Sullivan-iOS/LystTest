@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let mainView = FeedVC(nibName: nil, bundle: nil)
     mainView.view.backgroundColor = .white
     nav1.viewControllers = [mainView]
-    self.window!.rootViewController = nav1
+    self.window?.rootViewController = nav1
     self.window?.makeKeyAndVisible()
     return true
   }

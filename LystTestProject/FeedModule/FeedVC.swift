@@ -11,7 +11,7 @@ import LystAPIService
 
 class FeedVC: UIViewController, FeedVCInterface {
   
-  var presenter: FeedVCPresenterInterface?
+  private var presenter: FeedPresenterInterface?
   
   var data: FeedVCRepresentable? {
     didSet {
@@ -20,23 +20,23 @@ class FeedVC: UIViewController, FeedVCInterface {
     }
   }
   
+  //  Updated with selected text from the filter picker
+  //  Category passed to presenter when use taps Done in the filter
   private var selectedCategory = ""
   
   private lazy var numberOfCellsAcross: CGFloat = 2
   private lazy var edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-  
+  private var filterButton: UIBarButtonItem?
+
   private var cellSize: CGSize {
-    
     var cellWidth: CGFloat = 0.0
     if #available(iOS 11.0, *) {
       cellWidth = ((view.safeAreaLayoutGuide.layoutFrame.width - (edgeInsets.left * (numberOfCellsAcross + 1))) / numberOfCellsAcross).rounded(.down)
     } else {
       cellWidth = ((view.frame.width - (edgeInsets.left * (numberOfCellsAcross + 1))) / numberOfCellsAcross).rounded(.down)
     }
-    return CGSize(width: cellWidth,
-                  height: cellWidth)
+    return CGSize(width: cellWidth, height: cellWidth)
   }
-
   
   lazy var collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -51,20 +51,32 @@ class FeedVC: UIViewController, FeedVCInterface {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //Time constraint - Should be initialised by a coordinator
+    //Time constraint - Presenter should be initialised by a coordinator
     //Have had to import LystApiService to this file to allow for dependency injection without a coordinator
-    presenter = FeedVCPresenter()
+    presenter = FeedPresenter()
     presenter?.onViewDidLoad(view: self, apiService: APIService())
     
-    setNumberOfCellsAcross(withSize: view.intrinsicContentSize)
-    
     configureCollectionView()
+    addFilterButton()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
     
+    collectionView.dataSource = self
+    collectionView.delegate = self
+  }
+  
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    
+    setNumberOfCellsAcross(withSize: size)
+    collectionView.collectionViewLayout.invalidateLayout()
+  }
+  
+  private func addFilterButton() {
     filterButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
     navigationItem.rightBarButtonItem = filterButton
-    
   }
-  var filterButton: UIBarButtonItem?
   
   @objc func filterTapped() {
     guard let data = data, !data.allCategories.isEmpty else { return }
@@ -83,21 +95,8 @@ class FeedVC: UIViewController, FeedVCInterface {
     dummy.becomeFirstResponder()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
-    
-    collectionView.dataSource = self
-    collectionView.delegate = self
-  }
-  
-  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    
-    setNumberOfCellsAcross(withSize: size)
-    collectionView.collectionViewLayout.invalidateLayout()
-    
-  }
-  
   private func configureCollectionView() {
+    setNumberOfCellsAcross(withSize: view.intrinsicContentSize)
     collectionView.register(UINib(nibName: ProductCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProductCell.identifier)
     view.addSubview(collectionView)
     layoutCollectionView()
@@ -132,6 +131,7 @@ class FeedVC: UIViewController, FeedVCInterface {
   }
 }
 
+//MARK: - COLLECTION VIEW
 extension FeedVC: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return data?.products.count ?? 0
@@ -140,7 +140,7 @@ extension FeedVC: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
     
-    
+    //  Error handling required here in case the product is nil
     if let product = data?.products[indexPath.row], let imageURL = URL(string: product.image) {
       let representable = CellRepresentable(name: product.name, price: product.price, imageURL: imageURL)
       cell.configureView(representable: representable, presenter: ProductCellPresenter())
@@ -152,7 +152,6 @@ extension FeedVC: UICollectionViewDataSource {
 }
 
 extension FeedVC: UICollectionViewDelegateFlowLayout {
-  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return edgeInsets
   }
@@ -162,6 +161,7 @@ extension FeedVC: UICollectionViewDelegateFlowLayout {
   }
 }
 
+//MARK: - PICKER
 extension FeedVC: UIPickerViewDataSource {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
@@ -182,11 +182,11 @@ extension FeedVC: UIPickerViewDelegate {
   }
 }
 
+//MARK: - TextFieldDelegate
 extension FeedVC: UITextFieldDelegate {
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
     presenter?.onFilterSelected(forCategory: selectedCategory)
     filterButton?.isEnabled = true
     return true
-    
   }
 }

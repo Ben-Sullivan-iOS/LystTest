@@ -12,11 +12,10 @@ import LystAPIService
 //  The primary role of a presenter is to request objects from the network
 //  and create Representables to be passed to the view. It does not know
 //  anything about the view other than the data it requires.
-class FeedVCPresenter: FeedVCPresenterInterface {
+class FeedPresenter: FeedPresenterInterface {
   
-  var view: FeedVCInterface?
-  var apiService: APIServiceType?
-
+  private var view: FeedVCInterface?
+  private var apiService: APIServiceType?
   
   private var allCategories = [String]()
   
@@ -27,17 +26,17 @@ class FeedVCPresenter: FeedVCPresenterInterface {
   }
   
   func onFilterSelected(forCategory category: String) {
-    getProducts(forCategories: [ProductCategory(value: category)])
+    getProducts(forCategories: [ProductCategory(value: category.lowercased())])
   }
   
   private func getCategories() {
     APIService().getShoeCategories(forGender: .female) { result in
       switch result {
-      case .success(let categories):
-        categories.filters.forEach { category in
-          self.allCategories.append(category.value)
+      case .success(let networkResult):
+        networkResult.productCategories.forEach { category in
+          self.allCategories.append(category.value.firstUppercased)
         }
-        self.getProducts(forCategories: categories.filters)
+        self.getProducts(forCategories: networkResult.productCategories)
         
       case .failure(let error):
         print(error)
@@ -63,10 +62,8 @@ class FeedVCPresenter: FeedVCPresenterInterface {
           
           let category = categories.count > 1 ? "All Shoe Categories" : categories.first?.value ?? "Products"
 
-
           let representable = FeedVCRepresentable(allCategories: self.allCategories, category: category, products: productRepresentables)
           self.view?.data = representable
-          
         }
         
       case .failure(let error):

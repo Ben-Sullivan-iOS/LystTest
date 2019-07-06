@@ -13,8 +13,8 @@
 		480865F022CF738700354FE7 /* RoundedBorderButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480865EF22CF738700354FE7 /* RoundedBorderButtonView.xib */; };
 		48DE76A122CF791900FB2B33 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A022CF791900FB2B33 /* ProductCell.swift */; };
 		48DE76A322CF792300FB2B33 /* ProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A222CF792300FB2B33 /* ProductCellPresenter.swift */; };
-		48DE76A522CF880A00FB2B33 /* FeedVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A422CF880A00FB2B33 /* FeedVCPresenter.swift */; };
-		48DE76A722CF8BDC00FB2B33 /* FeedVCContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A622CF8BDC00FB2B33 /* FeedVCContracts.swift */; };
+		48DE76A522CF880A00FB2B33 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A422CF880A00FB2B33 /* FeedPresenter.swift */; };
+		48DE76A722CF8BDC00FB2B33 /* FeedContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A622CF8BDC00FB2B33 /* FeedContracts.swift */; };
 		48DE76A922CF962A00FB2B33 /* UITextFieldDoneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76A822CF962A00FB2B33 /* UITextFieldDoneExtension.swift */; };
 		48DE76AD22CF9BC100FB2B33 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DE76AC22CF9BC100FB2B33 /* Extensions.swift */; };
 		48EC362A22CCA56800600475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC362922CCA56800600475 /* AppDelegate.swift */; };
@@ -22,6 +22,7 @@
 		48EC363122CCA56B00600475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48EC363022CCA56B00600475 /* Assets.xcassets */; };
 		48EC363422CCA56B00600475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48EC363222CCA56B00600475 /* LaunchScreen.storyboard */; };
 		48EC363F22CCA56B00600475 /* LystTestProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC363E22CCA56B00600475 /* LystTestProjectTests.swift */; };
+		48ED9F0F22D0A4F300D71C52 /* FeedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED9F0E22D0A4F300D71C52 /* FeedModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +40,8 @@
 		480865EF22CF738700354FE7 /* RoundedBorderButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoundedBorderButtonView.xib; sourceTree = "<group>"; };
 		48DE76A022CF791900FB2B33 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		48DE76A222CF792300FB2B33 /* ProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellPresenter.swift; sourceTree = "<group>"; };
-		48DE76A422CF880A00FB2B33 /* FeedVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVCPresenter.swift; sourceTree = "<group>"; };
-		48DE76A622CF8BDC00FB2B33 /* FeedVCContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVCContracts.swift; sourceTree = "<group>"; };
+		48DE76A422CF880A00FB2B33 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		48DE76A622CF8BDC00FB2B33 /* FeedContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContracts.swift; sourceTree = "<group>"; };
 		48DE76A822CF962A00FB2B33 /* UITextFieldDoneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldDoneExtension.swift; sourceTree = "<group>"; };
 		48DE76AC22CF9BC100FB2B33 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		48EC362622CCA56800600475 /* LystTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LystTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +53,7 @@
 		48EC363A22CCA56B00600475 /* LystTestProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LystTestProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EC363E22CCA56B00600475 /* LystTestProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LystTestProjectTests.swift; sourceTree = "<group>"; };
 		48EC364022CCA56B00600475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48ED9F0E22D0A4F300D71C52 /* FeedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +95,10 @@
 		48DE76AB22CF9BA400FB2B33 /* FeedModule */ = {
 			isa = PBXGroup;
 			children = (
-				48DE76A622CF8BDC00FB2B33 /* FeedVCContracts.swift */,
+				48DE76A622CF8BDC00FB2B33 /* FeedContracts.swift */,
+				48ED9F0E22D0A4F300D71C52 /* FeedModels.swift */,
 				48EC362B22CCA56800600475 /* FeedVC.swift */,
-				48DE76A422CF880A00FB2B33 /* FeedVCPresenter.swift */,
+				48DE76A422CF880A00FB2B33 /* FeedPresenter.swift */,
 				48DE76A022CF791900FB2B33 /* ProductCell.swift */,
 				48DE76A222CF792300FB2B33 /* ProductCellPresenter.swift */,
 				480865EF22CF738700354FE7 /* RoundedBorderButtonView.xib */,
@@ -254,12 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48DE76A722CF8BDC00FB2B33 /* FeedVCContracts.swift in Sources */,
-				48DE76A522CF880A00FB2B33 /* FeedVCPresenter.swift in Sources */,
+				48DE76A722CF8BDC00FB2B33 /* FeedContracts.swift in Sources */,
+				48DE76A522CF880A00FB2B33 /* FeedPresenter.swift in Sources */,
 				48DE76A122CF791900FB2B33 /* ProductCell.swift in Sources */,
 				48DE76AD22CF9BC100FB2B33 /* Extensions.swift in Sources */,
 				48EC362C22CCA56800600475 /* FeedVC.swift in Sources */,
 				48DE76A322CF792300FB2B33 /* ProductCellPresenter.swift in Sources */,
+				48ED9F0F22D0A4F300D71C52 /* FeedModels.swift in Sources */,
 				48EC362A22CCA56800600475 /* AppDelegate.swift in Sources */,
 				48DE76A922CF962A00FB2B33 /* UITextFieldDoneExtension.swift in Sources */,
 			);

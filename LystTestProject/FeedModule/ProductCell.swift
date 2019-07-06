@@ -8,16 +8,6 @@
 
 import UIKit
 
-struct CellRepresentable {
-  let name: String
-  let price: String
-  let imageURL: URL
-}
-
-protocol ProductCellInterface {
-  var productImage: UIImage? { get set }
-}
-
 class ProductCell: UICollectionViewCell, ProductCellInterface {
   
   @IBOutlet weak var cardView: UIView!
