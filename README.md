@@ -2,7 +2,7 @@
 
 Small app created as a take home project to create a filterable list of shoes.
 
-Had to omit tests, error handling and coordinators due to time constraints. The architecture is based on MVP which has the following layers:
+Had to omit tests, error handling and the gender filter due to time constraints. The architecture is based on MVP which has the following layers:
 
 Model - There are two main types of objects
 Representables which are created by a Presenter and consumed by a View
