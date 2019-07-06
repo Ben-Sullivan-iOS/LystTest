@@ -2,6 +2,8 @@
 
 Small app created as a take home project to create a filterable list of shoes.
 
+The APIService for this project has been created using the new Swift Package Manager, it should clone automatically with this project.
+
 The architecture is based on MVP which has the following layers:
 
 Model - There are two main types of objects
