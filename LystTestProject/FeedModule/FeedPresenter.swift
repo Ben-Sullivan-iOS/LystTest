@@ -26,7 +26,7 @@ class FeedPresenter: FeedPresenterInterface {
   }
   
   func onFilterSelected(forCategory category: String) {
-    getProducts(forCategories: [ProductCategory(value: category.lowercased())])
+    getProducts(forCategories: [ProductCategoryNetworkModel(value: category.lowercased())])
   }
   
   private func getCategories() {
@@ -44,7 +44,7 @@ class FeedPresenter: FeedPresenterInterface {
     }
   }
   
-  private func getProducts(forCategories categories: [ProductCategory]) {
+  private func getProducts(forCategories categories: [ProductCategoryNetworkModel]) {
     apiService?.getProducts(forProductTypes: categories) { result in
       switch result {
       case .success(let productResult):
